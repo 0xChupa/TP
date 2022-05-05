@@ -19,6 +19,7 @@ def check(x):
         return 3
 
 playAgain = 1
+double = 0
 balance = input("Avec combien commencez-vous à jouer ? ")
 
 while playAgain != 'N':
@@ -37,24 +38,41 @@ while playAgain != 'N':
         print("Blackjack !")
         mise = int(mise) * 1.5
         balance = int(balance) + int(mise)
+    
+    elif totalJ > 21:
+        print("Le croupier gagne, car votre score est : " +  str(totalJ))
 
     else:
         print("Vous êtes à un total de : " + str(totalJ) + ", et le croupier a un total de " + str(totalC) + " avec sa première carte.")
         continueToPlayJ = input("Continue ? (Y / N) : ")
 
         while continueToPlayJ == 'Y':
+            if double == 0:
+                answerDouble = input ("Voulez-vous doubler votre mise ? (Y/N) ")
+                if answerDouble.lower() == 'y':
+                    double = 1
+                    if int(mise) <= int(balance):
+                        balance = int(balance) - int(mise)
+                        mise = int(mise) * 2
+                    else:
+                        print("Votre balance actuelle ne vous permet pas de doubler votre mise.")
+                else:
+                    continue
+
             cartePioche = tirage(cartes)
-            if cartePioche == '11' and totalJ + cartePioche > 21:
-                totalJ +=1
+            if int(cartePioche) == 11:
+                As = input("Vous avez piocher un as, voulez-vous que celui-ci soit égal à 1 ou à 11 ?")
+                if As == '1':
+                    totalJ += 1
+                else:
+                    totalJ += cartePioche
             else:
-                totalJ += tirage(cartes)
+                totalJ += cartePioche   
             if totalJ > 21:
-                print("Le croupier gagne")
+                print("Le croupier gagne, car votre score est : " +  str(totalJ))
                 break
             elif totalJ == 21:
                 print("Blackjack !")
-                mise = int(mise) * 1.5
-                balance = int(balance) + int(mise)
                 break
             else:
                 print("Vous êtes à un total de : " + str(totalJ))
@@ -62,6 +80,8 @@ while playAgain != 'N':
             continueToPlayJ = input("Continue ? (Y / N) : ")
 
         totalC += tirage(cartes)
+        if totalJ > 21:
+            break
         if check(totalC) == 0:
             break
 
@@ -90,8 +110,9 @@ while playAgain != 'N':
                 if totalJ > 21:
                     continue
                 else:
-                    print("Bien joué, vous avez gagné.") 
+                    print("Bien joué, vous avez gagné. Le croupier avait " + str(totalC) + " .") 
                     mise = int(mise) * 1.5
                     balance = int(balance) + int(mise)
 
+    double = 0
     playAgain = input("Play Again ( Yes (press Y) or No (press N) ) : ")
