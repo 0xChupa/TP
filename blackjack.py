@@ -8,10 +8,8 @@ def tirage(cartes):
 
 def check(x):
     if x == 21:
-        print("Tu as perdu, le croupier a un Blackjack.")
         return 0
     elif x > 21 :
-        print("Tu as gagné")
         return 1
     elif 15 < x < 18 :
         return 2
@@ -56,8 +54,6 @@ while playAgain != 'N':
                         mise = int(mise) * 2
                     else:
                         print("Votre balance actuelle ne vous permet pas de doubler votre mise.")
-                else:
-                    continue
 
             cartePioche = tirage(cartes)
             if int(cartePioche) == 11:
@@ -83,12 +79,13 @@ while playAgain != 'N':
         if totalJ > 21:
             break
         if check(totalC) == 0:
-            break
+            print("Tu as perdu, le croupier a un Blackjack.")
 
         if check(totalC) == 1:
             if totalJ > 21:
                 break
             else:
+                print("Tu as gagné")
                 mise = int(mise) * 1.5
                 balance = int(balance) + int(mise)
 
