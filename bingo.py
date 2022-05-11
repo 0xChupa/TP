@@ -5,6 +5,9 @@ choicesP = [i for i in range(1,90)]
 choicesB = [i for i in range(1,90)]
 randomNumList = [i for i in range(1,90)]
 
+def check(list): 
+    return all(i == list[0] for i in list) 
+
 playBoardP = [         #P pour Player
             [0,0,0,0,0],
             [0,0,0,0,0],
@@ -34,8 +37,8 @@ for i in range(5):
 for i in range (5):
     print(str(playBoardP[i]) + "             "   + str(playBoardB[i]))
 
-tourSuivant = 'y'
-while tourSuivant.lower() == 'y':
+
+while check(playBoardB) == False and check(playBoardP) == False:
     randomNum = random.choice(randomNumList)
     randomNumList.pop(randomNumList.index(randomNum))
     print(randomNum)
@@ -51,4 +54,11 @@ while tourSuivant.lower() == 'y':
 
     for i in range (5):
         print(str(playBoardP[i]) + "             "   + str(playBoardB[i]))
-    tourSuivant = input("Tour Suivant (y/n) ?")
+    if check(playBoardB) == True and check(playBoardP) == True:
+        print("Vous avez rempli votre grille en même temps, égalite !")
+        break
+    if check(playBoardP) == True:
+        print("Vous avez gagné, bien joué !")
+        break
+    if check(playBoardB) == True:
+        print("Votre adversaire a gagné, dommage !")
