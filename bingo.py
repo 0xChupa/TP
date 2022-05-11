@@ -21,8 +21,8 @@ for i in range(5):
 for i in range (5):
     print(plateau[i])
 
-playAgain = 'y'
-while playAgain.lower() == 'y':
+tourSuivant = 'y'
+while tourSuivant.lower() == 'y':
     randomNum = random.choice(randomNumList)
     randomNumList.pop(randomNumList.index(randomNum))
     print(randomNum)
@@ -36,4 +36,4 @@ while playAgain.lower() == 'y':
 
     for i in range (5):
         print(plateau[i])
-    playAgain = input("Tour Suivant (y/n) ?")
+    tourSuivant = input("Tour Suivant (y/n) ?")
