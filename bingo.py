@@ -1,6 +1,8 @@
 import array
 import random
 
+balance = input("Avec combien commencez-vous à jouer ? ")
+
 choicesP = [i for i in range(1,90)]
 choicesB = [i for i in range(1,90)]
 randomNumList = [i for i in range(1,90)]
@@ -34,9 +36,14 @@ for i in range(5):
             playBoardB[i][j] = choiceB
             choicesB.pop(choicesB.index(choiceB))
 
+
+mise = input("Quelle est votre mise ? ")
+while int(mise) > int(balance):
+    mise = input("Votre mise est supérieure à votre balance. Rentrez une nouvelle mise : ")
+balance = int(balance) - int(mise)
+
 for i in range (5):
     print(str(playBoardP[i]) + "             "   + str(playBoardB[i]))
-
 
 while check(playBoardB) == False and check(playBoardP) == False:
     randomNum = random.choice(randomNumList)
@@ -56,9 +63,12 @@ while check(playBoardB) == False and check(playBoardP) == False:
         print(str(playBoardP[i]) + "             "   + str(playBoardB[i]))
     if check(playBoardB) == True and check(playBoardP) == True:
         print("Vous avez rempli votre grille en même temps, égalite !")
+        balance = int(balance) + int(mise)
         break
     if check(playBoardP) == True:
         print("Vous avez gagné, bien joué !")
+        mise = int(mise) * 2
+        balance = int(balance) + int(mise)
         break
     if check(playBoardB) == True:
         print("Votre adversaire a gagné, dommage !")
