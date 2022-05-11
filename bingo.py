@@ -1,22 +1,39 @@
 import array
 import random
 
-arr=[[1,2,3],[4,5,6],[7,8,9]]
+choices = [i for i in range(1,50)]
+randomNumList = [i for i in range(1,50)]
 
-for _ in arr:
-    for i in _:
-        i = random.randint(1,90)
-        print(i,end=" ")
-    print()
+plateau = [
+            [0,0,0,0,0],
+            [0,0,0,0,0],
+            [0,0,0,0,0],
+            [0,0,0,0,0],
+            [0,0,0,0,0],
+        ]
 
-while True:
-    numberToFind = random.randint(1,90)
+for i in range(5):
+        for j in range(5):
+            choice = random.choice(choices)
+            plateau[i][j] = choice
+            choices.pop(choices.index(choice))
 
-    for _ in arr:
-        for i in _:
-            if i == numberToFind:
-                print("GOOD")
-                break
+for i in range (5):
+    print(plateau[i])
+
+tourSuivant = 'y'
+while tourSuivant.lower() == 'y':
+    randomNum = random.choice(randomNumList)
+    randomNumList.pop(randomNumList.index(randomNum))
+    print(randomNum)
+
+    for i in range(5):
+        for j in range(5):
+            if plateau[i][j] == randomNum:
+                plateau[i][j] = 'X'
             else:
                 continue
-        break
+
+    for i in range (5):
+        print(plateau[i])
+    tourSuivant = input("Tour Suivant (y/n) ?")
