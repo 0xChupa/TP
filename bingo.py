@@ -72,3 +72,5 @@ while check(playBoardB) == False and check(playBoardP) == False:
         break
     if check(playBoardB) == True:
         print("Votre adversaire a gagné, dommage !")
+
+print("Votre balance est désormais : " + str(balance))
