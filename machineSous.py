@@ -6,16 +6,12 @@ def test():
     test =  random.choice(symbol)
     return test
 
-playAgain = '0'
-balance = input("Avec combien commencez-vous à jouer ? ")
 
-while playAgain.lower() != 'n':
-
+def playMachineSous(balance):
     symb1 = test()
     symb2 = test()
     symb3 =  test()
-
-    print("Votre balance est désormais : ", balance)
+    
     mise = input("Quelle est votre mise ? ")
     while int(mise) > int(balance):
         mise = input("Votre mise est supérieure à votre balance. Rentrez une nouvelle mise : ")
@@ -29,22 +25,27 @@ while playAgain.lower() != 'n':
         if symb1 == 1:
             mise = int(mise) * 2
             balance = int(balance) + int(mise)
+            return balance
         if symb1 == 2:
             mise = int(mise) * 3
             balance = int(balance) + int(mise)
+            return balance
         if symb1 == 3:
             mise = int(mise) * 5
             balance = int(balance) + int(mise)
+            return balance
         if symb2 == 4:
             mise = int(mise) * 10
             balance = int(balance) + int(mise)
+            return balance
         if symb2 == 5:
             mise = int(mise) * 20
             balance = int(balance) + int(mise)
+            return balance
         if symb2 == 6:
             mise = int(mise) * 50
             balance = int(balance) + int(mise)
+            return balance
     else:
         print("Vous avez perdu, dommage !")
-
-    playAgain = input("Play Again ( Yes (press Y) or No (press N) ) : ")
+        return balance
