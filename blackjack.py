@@ -18,10 +18,10 @@ def check(x):
 
 playAgain = 1
 double = 0
-balance = input("Avec combien commencez-vous à jouer ? ")
 
-while playAgain != 'N':
-    print("Votre balance est désormais : ", balance)
+
+def playBlackjack(balance):
+    double = 0
     mise = input("Quelle est votre mise ? ")
     if int(mise) > int(balance):
         mise = input("Votre mise est supérieure à votre balance. Rentrez une nouvelle mise : ")
@@ -30,15 +30,17 @@ while playAgain != 'N':
 
     totalJ = 0 + tirage(cartes)
     totalJ += tirage(cartes)
-    totalC= 0 + tirage(cartes)
+    totalC = 0 + tirage(cartes)
 
     if totalJ == 21:
         print("Blackjack !")
         mise = int(mise) * 1.5
         balance = int(balance) + int(mise)
-    
+        return balance
+
     elif totalJ > 21:
-        print("Le croupier gagne, car votre score est : " +  str(totalJ))
+        print("Le croupier gagne, car votre score est : " + str(totalJ))
+        return balance
 
     else:
         print("Vous êtes à un total de : " + str(totalJ) + ", et le croupier a un total de " + str(totalC) + " avec sa première carte.")
@@ -46,14 +48,14 @@ while playAgain != 'N':
 
         while continueToPlayJ == 'Y':
             if double == 0:
-                answerDouble = input ("Voulez-vous doubler votre mise ? (Y/N) ")
-                if answerDouble.lower() == 'y':
-                    double = 1
-                    if int(mise) <= int(balance):
-                        balance = int(balance) - int(mise)
-                        mise = int(mise) * 2
-                    else:
-                        print("Votre balance actuelle ne vous permet pas de doubler votre mise.")
+                answerDouble = input("Voulez-vous doubler votre mise ? (Y/N) ")
+            if answerDouble.lower() == 'y':
+                double = 1
+                if int(mise) <= int(balance):
+                    balance = int(balance) - int(mise)
+                    mise = int(mise) * 2
+                else:
+                    print("Votre balance actuelle ne vous permet pas de doubler votre mise.")
 
             cartePioche = tirage(cartes)
             if int(cartePioche) == 11:
@@ -63,53 +65,68 @@ while playAgain != 'N':
                 else:
                     totalJ += cartePioche
             else:
-                totalJ += cartePioche   
+                totalJ += cartePioche
             if totalJ > 21:
-                print("Le croupier gagne, car votre score est : " +  str(totalJ))
-                break
+                print("Le croupier gagne, car votre score est : " + str(totalJ))
+                return balance
             elif totalJ == 21:
-                print("Blackjack !")
-                break
+                    print("Blackjack !")
+                    mise = int(mise) * 1.5
+                    balance = int(balance) + int(mise)
+                    return balance
             else:
                 print("Vous êtes à un total de : " + str(totalJ))
-            
-            continueToPlayJ = input("Continue ? (Y / N) : ")
 
-        totalC += tirage(cartes)
+                continueToPlayJ = input("Continue ? (Y / N) : ")
+
+    totalC += tirage(cartes)
+    if totalJ > 21:
+        return balance
+    if check(totalC) == 0:
+        print("Tu as perdu, le croupier a un Blackjack.")
+        return balance
+
+    if check(totalC) == 1:
         if totalJ > 21:
-            break
-        if check(totalC) == 0:
-            print("Tu as perdu, le croupier a un Blackjack.")
+            return balance
+        else:
+            print("Tu as gagné")
+            mise = int(mise) * 1.5
+            balance = int(balance) + int(mise)
+        return balance
 
-        if check(totalC) == 1:
-            if totalJ > 21:
-                break
-            else:
-                print("Tu as gagné")
+
+    if check(totalC) == 2:
+        playC = random.randint(0, 1)
+        if playC == 1:
+            totalC += tirage(cartes)
+            if check(totalC) == 1:
                 mise = int(mise) * 1.5
                 balance = int(balance) + int(mise)
+                print("Vous avez gagné.")
+            if check(totalC) == 0:
+                print("Le croupier a un blackjack.")
+            if 21 >= totalC > totalJ:
+                print("Le croupier gagne avec un score de : " + str(totalC))
+            if 21 >= totalJ > totalC:
+                print("Vous avez gagné avec un score de : " +  str(totalJ) + " contre " + str(totalC) + "pour le croupier.") 
+                mise = int(mise) * 1.5
+                balance = int(balance) + int(mise)           
+        return balance
 
-        if check(totalC) == 2:
-            playC = random.randint(0,1)
-            if playC == 1:
-                totalC += tirage(cartes)
-                if check(totalC) == 1:
-                    mise = int(mise) * 1.5
-                    balance = int(balance) + int(mise)
-        
-        if check(totalC) == 3:
-            if totalC > totalJ:
-                print("Vous avez perdu. Le croupier a " + str(totalC))
-            elif totalC == totalJ:
-                print("Egalite.")
-                balance =  int(balance) + int(mise)
+    if check(totalC) == 3:
+        if totalC > totalJ:
+            print("Vous avez perdu. Le croupier a " + str(totalC))
+            return balance
+        elif totalC == totalJ:
+            print("Egalite.")
+            balance = int(balance) + int(mise)
+            return balance
+        else:
+            if totalJ > 21:
+                return balance
             else:
-                if totalJ > 21:
-                    continue
-                else:
-                    print("Bien joué, vous avez gagné. Le croupier avait " + str(totalC) + " .") 
-                    mise = int(mise) * 1.5
-                    balance = int(balance) + int(mise)
-
-    double = 0
-    playAgain = input("Play Again ( Yes (press Y) or No (press N) ) : ")
+                print("Bien joué, vous avez gagné. Le croupier avait " + str(totalC) + " .")
+                mise = int(mise) * 1.5
+                balance = int(balance) + int(mise)
+                return balance
