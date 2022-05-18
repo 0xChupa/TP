@@ -4,7 +4,7 @@ from pygame.locals import *
 pygame.init()
 x = 640
 y = 480
-#Ouverture de la fenêtre Pygame
+
 fenetre = pygame.display.set_mode((x, y))
 fenetre = pygame.display.set_mode((x,y), FULLSCREEN)
 
