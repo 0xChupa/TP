@@ -23,7 +23,7 @@ def playRoulette(balance):
             print("Félicitations, vous repartez avec un gain de " + str(gain) + " !")
             return balance
         else:
-            print("Dommage, c'est perdu !")
+            print("Dommage, c'est perdu ! Le numéro gagnant était : " + str(winningNumber))
             return balance
     if choice.lower() == 'c':
         balance = int(balance) - int(mise)
