@@ -5,6 +5,8 @@ pygame.init()
 x = 640
 y = 480
 
+
+
 fenetre = pygame.display.set_mode((x, y))
 #fenetre = pygame.display.set_mode((x,y), FULLSCREEN)
 
