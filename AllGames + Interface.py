@@ -38,18 +38,16 @@ pygame.mixer.music.play()
 # Rafraîchissement de l'écran
 pygame.display.flip()
 
+
+
 # BOUCLE INFINIE
 continuer = 1
 while continuer == 1:
     #balance = input("Quelle est votre balance ? ")
     pygame.init()
     changeGame = 'P'
-    while changeGame.lower() != 's':  # Tant que le joueur souhaite continuer à jouer
+    while changeGame.lower() == 'p' or changeGame.lower() == 'c' : # Tant que le joueur souhaite continuer à jouer au même jeu
         for event in pygame.event.get():  # On parcours la liste de tous les événements
-            if event.type == QUIT:
-                continuer1 = 0
-            if event.type == KEYDOWN and event.key == K_ESCAPE:
-                continuer1 = 0
 
             if event.type == MOUSEBUTTONDOWN and event.button == 3 and event.pos[0] > 15 and event.pos[0] < 180 and \
                     event.pos[1] > 15 and event.pos[1] < 120:  # définition de la zone de clic pour accéder au bingo.
@@ -60,9 +58,6 @@ while continuer == 1:
                     balance = playBingo(balance)  # Execution du jeu du Bingo.
                     print("Votre balance est : " + str(balance) + "\n")
                     changeGame = input("Voulez-vous continuer (press P), changer de jeu (press C) ou arrêter (press S).")
-
-                if changeGame.lower() == 'c':
-                    game = input("A quel jeu veux-tu jouer ? ")
 
                 if changeGame.lower() == 's':
                     print("Merci d'avoir joué, à bientôt !")
@@ -79,9 +74,6 @@ while continuer == 1:
                     print("Votre balance est : " + str(balance) + "\n")
                     changeGame = input("Voulez-vous continuer (press P), changer de jeu (press C) ou arrêter (press S).")
 
-                if changeGame.lower() == 'c':
-                    game = input("A quel jeu veux-tu jouer ? ")
-
                 if changeGame.lower() == 's':
                     print("Merci d'avoir joué, à bientôt !")
                     pygame.quit()
@@ -97,9 +89,6 @@ while continuer == 1:
                     print("Votre balance est : " + str(balance) + "\n")
                     changeGame = input("Voulez-vous continuer (press P), changer de jeu (press C) ou arrêter (press S).")
 
-                if changeGame.lower() == 'c':
-                    game = input("A quel jeu veux-tu jouer ? ")
-
                 if changeGame.lower() == 's':
                     print("Merci d'avoir joué, à bientôt !")
                     pygame.quit()
@@ -113,17 +102,32 @@ while continuer == 1:
                 while changeGame.lower() == 'p':
                     balance = playMachineSous(balance)
                     print("Votre balance est : " + str(balance) + "\n")
-
                     changeGame = input("Voulez-vous continuer (press P), changer de jeu (press C) ou arrêter (press S).")
-
-                if changeGame.lower() == 'c':
-                    game = input("A quel jeu veux-tu jouer ? ")
 
                 if changeGame.lower() == 's':
                     print("Merci d'avoir joué, à bientôt !")
                     pygame.quit()
                     exit()
 
-    if balance <= 0:
-        print("\nVotre balance est nulle. Vous ne pouvez plus jouer.")
-        print("A bientôt.")
+            if changeGame.lower() == 'c':
+                game = input("A quel jeu veux-tu jouer ? ")
+                if game.lower() == 'roulette':
+                    balance = playRoulette(balance)
+
+                elif game.lower() == 'blackjack':
+                    balance = playBlackjack(balance)
+
+                elif game.lower() == 'machine a sous' or game.lower() == 'machine à sous':
+                    balance = playMachineSous(balance)
+
+                elif game.lower() == 'bingo':
+                    balance = playBingo(balance)
+
+                else:
+                    print("Ce jeu n'existe pas, veuillez réessayer")
+
+                changeGame = input("Voulez-vous continuer (press P), changer de jeu (press C) ou arrêter (press S).")
+
+                if balance <= 0:
+                    print("\nVotre balance est nulle. Vous ne pouvez plus jouer.")
+                    print("A bientôt.")
