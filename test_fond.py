@@ -5,8 +5,10 @@ pygame.init()
 x = 640
 y = 480
 
+
+
 fenetre = pygame.display.set_mode((x, y))
-fenetre = pygame.display.set_mode((x,y), FULLSCREEN)
+#fenetre = pygame.display.set_mode((x,y), FULLSCREEN)
 
 #Chargement et collage du fond
 fond = pygame.image.load("fond.jpg").convert()
@@ -28,6 +30,8 @@ fenetre.blit(Machine, (441,280))
 file = 'musique.mp3'
 musique = pygame.mixer.music.load("musique.mp3")
 pygame.mixer.music.play()
+
+input_rect = pygame.Rect(200, 200, 140, 32)
 
 #Rafraîchissement de l'écran
 pygame.display.flip()
