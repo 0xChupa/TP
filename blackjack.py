@@ -1,4 +1,5 @@
-import random 
+import random
+import pygame
 
 cartes = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11]   # on définit les valeurs des différentes cartes (les habillés valent 10, et l'AS vaut 11)
 
@@ -21,6 +22,14 @@ double = 0
 
 
 def playBlackjack(balance):
+    pygame.init()
+    x = 640  # Definition de la taille de la fenêtre
+    y = 480
+
+    fenetre2 = pygame.display.set_mode((x, y))
+
+    fond = pygame.image.load("fond.jpg").convert()  # Chargement du fond
+    fenetre2.blit(fond, (0, 0))
     double = 0
     mise = input("Quelle est votre mise ? ")
     if int(mise) > int(balance):    # on vérifie que la mise n'excède pas la balance
