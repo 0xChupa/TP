@@ -1,5 +1,7 @@
 import random
 import pygame
+import pygame
+from pygame.locals import *
 
 cartes = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11]   # on définit les valeurs des différentes cartes (les habillés valent 10, et l'AS vaut 11)
 
@@ -22,16 +24,44 @@ double = 0
 
 
 def playBlackjack(balance):
+    double = 0
     pygame.init()
     x = 640  # Definition de la taille de la fenêtre
     y = 480
 
-    fenetre2 = pygame.display.set_mode((x, y))
+    fond_mach = pygame.display.set_mode((x, y))
 
-    fond = pygame.image.load("fond.jpg").convert()  # Chargement du fond
-    fenetre2.blit(fond, (0, 0))
-    double = 0
-    mise = input("Quelle est votre mise ? ")
+    fond = pygame.image.load("blackjack_neon_finit.jpg").convert()  # Chargement du fond
+    fond_mach.blit(fond, (0, 0))  # Position du fond sur la fenêtre
+
+    pygame.display.flip()
+
+    continuer = 1
+    while continuer == 1:
+        for event in pygame.event.get():  # On parcours la liste de tous les événements
+
+            if event.type == QUIT:
+                continuer = 0
+                pygame.quit()
+
+            if event.type == MOUSEBUTTONDOWN and event.button == 3 and 10 < event.pos[0] < 138 and 385 < event.pos[
+                1] < 463:
+                mise = 100
+                print("Votre mise est de :", mise)
+                continuer = 0
+
+            if event.type == MOUSEBUTTONDOWN and event.button == 3 and 249 < event.pos[0] < 369 and 383 < event.pos[
+                1] < 463:  # Définition de la zone de clic pour mettre la balance à 100.
+                mise = 500
+                print("Votre mise est de :", mise)
+                continuer = 0
+
+            if event.type == MOUSEBUTTONDOWN and event.button == 3 and 495 < event.pos[0] < 625 and 379 < event.pos[
+                1] < 464:
+                mise = 1000
+                print("Votre mise est de :", mise)
+                continuer = 0
+
     if int(mise) > int(balance):    # on vérifie que la mise n'excède pas la balance
         mise = input("Votre mise est supérieure à votre balance. Rentrez une nouvelle mise : ")
 
