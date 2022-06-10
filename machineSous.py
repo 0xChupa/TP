@@ -31,6 +31,7 @@ def playMachineSous(balance):
 
             if event.type == QUIT:
                 continuer = 0
+                pygame.quit()
 
             if event.type == MOUSEBUTTONDOWN and event.button == 3 and 150 < event.pos[0] < 227 and 228 < event.pos[
                 1] < 293:   # Définition de la zone de clic pour mettre la balance à 100.
