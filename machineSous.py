@@ -1,5 +1,6 @@
 import random
-
+import pygame
+from pygame.locals import *
 symbol = [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6]
 
 def test():
@@ -11,8 +12,46 @@ def playMachineSous(balance):
     symb1 = test()
     symb2 = test()
     symb3 =  test()
-    
-    mise = input("Quelle est votre mise ? ")
+
+    pygame.init()
+    x = 640  # Definition de la taille de la fenêtre
+    y = 480
+
+    fond_mach = pygame.display.set_mode((x, y))
+
+    fond = pygame.image.load("Machine_neon_finit.jpg").convert()  # Chargement du fond
+    fond_mach.blit(fond, (0, 0))  # Position du fond sur la fenêtre
+
+    pygame.display.flip()
+
+    continuer = 1
+    while continuer == 1:
+        #pygame.init()
+        for event in pygame.event.get():  # On parcours la liste de tous les événements
+
+            if event.type == QUIT:
+                continuer = 0
+
+            if event.type == MOUSEBUTTONDOWN and event.button == 3 and 150 < event.pos[0] < 227 and 228 < event.pos[
+                1] < 293:   # Définition de la zone de clic pour mettre la balance à 100.
+                mise = 100
+                print("Votre mise est de :" , mise)
+                continuer = 0
+
+            if event.type == MOUSEBUTTONDOWN and event.button == 3 and 251 < event.pos[0] < 324 and 228 < event.pos[
+                1] < 293:
+                mise = 500
+                print("Votre mise est de :" , mise)
+                continuer = 0
+
+            if event.type == MOUSEBUTTONDOWN and event.button == 3 and 341 < event.pos[0] < 416 and 228 < event.pos[
+                1] < 293:
+                mise = 1000
+                print ("Votre mise est de :" , mise)
+                continuer = 0
+
+
+
     while int(mise) > int(balance):
         mise = input("Votre mise est supérieure à votre balance. Rentrez une nouvelle mise : ")
 
