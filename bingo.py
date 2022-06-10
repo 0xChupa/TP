@@ -55,6 +55,7 @@ def playBingo(balance):
 
             if event.type == QUIT:
                 continuer = 0
+                pygame.quit()
 
             if event.type == MOUSEBUTTONDOWN and event.button == 3 and 13 < event.pos[0] < 143 and 214 < event.pos[
                 1] < 312:
