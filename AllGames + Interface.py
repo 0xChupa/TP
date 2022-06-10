@@ -103,7 +103,7 @@ while continuer == 1:
                         "Voulez-vous continuer (press P), changer de jeu (press C) ou arrêter (press S).")
 
                 if changeGame.lower() == 's':
-                    print("Merci d'avoir joué, à bientôt !")
+                    print("Merci d'avoir joué, vous finissez le jeu avec une balance de", balance, "à bientôt !")
                     pygame.quit()
                     exit()
 
