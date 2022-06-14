@@ -112,7 +112,7 @@ while continuer == 1:
                 continuer = 0
                 while changeGame.lower() == 'p':
                     balance = playBlackjack(balance)
-                    print("Votre balance est : " + str(balance) + "\n")
+                    print("Votre balance est : " + balance + "\n")
                     changeGame = input(
                         "Voulez-vous continuer (press P), changer de jeu (press C) ou arrêter (press S).")
 
