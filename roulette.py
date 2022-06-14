@@ -1,10 +1,51 @@
 import random
+import pygame
+from pygame.locals import *
 
 numbers = [i for i in range(1,36)]  # on crée une liste de nombres
 colors = ['rouge', 'noir']
 
 def playRoulette(balance):
-    mise = input("Quelle est votre mise ? (entre 1 et 1000) ")      # on demande la mise
+    pygame.init()
+    x = 640  # Definition de la taille de la fenêtre
+    y = 480
+
+    fond_mach = pygame.display.set_mode((x, y))
+
+    fond = pygame.image.load("roulette_neon_finit.jpg").convert()  # Chargement du fond
+    fond_mach.blit(fond, (0, 0))  # Position du fond sur la fenêtre
+
+    pygame.display.flip()
+
+    continuer = 1
+    while continuer == 1:
+        # pygame.init()
+        for event in pygame.event.get():  # On parcours la liste de tous les événements
+
+            if event.type == QUIT:
+                continuer = 0
+                pygame.quit()
+
+
+            if event.type == MOUSEBUTTONDOWN and event.button == 3 and 12 < event.pos[0] < 179 and 389 < event.pos[
+                1] < 470:  # Définition de la zone de clic pour mettre la balance à 100.
+                mise = 100
+                print("Votre mise est de :", mise)
+                continuer = 0
+
+            if event.type == MOUSEBUTTONDOWN and event.button == 3 and 231 < event.pos[0] < 401 and 391 < event.pos[
+                1] < 473:
+                mise = 500
+                print("Votre mise est de :", mise)
+                continuer = 0
+
+            if event.type == MOUSEBUTTONDOWN and event.button == 3 and 455 < event.pos[0] < 617 and 391 < event.pos[
+                1] < 467:
+                mise = 1000
+                print("Votre mise est de :", mise)
+                continuer = 0
+
+
     while int(mise) > int(balance):     # puis on vérifie qu'elle est cohérente avec la balance
         mise = input("Votre mise est supérieure à votre balance. Rentrez une nouvelle mise. ")
     while int(mise) > 1000 or int(mise) < 1:

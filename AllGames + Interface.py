@@ -29,15 +29,13 @@ fenetre2.blit(Machine, (451, 329))
 
 Bouton_100 = pygame.image.load("Bouton_100.jpg")
 fenetre2.blit(Bouton_100, (207, y - 149))
-rect100 = Bouton_100.get_rect()
 
 Bouton_500 = pygame.image.load("Bouton_500.jpg")
 fenetre2.blit(Bouton_500, (333, y - 149))
-rect500 = Bouton_500.get_rect()
 
 Bouton_1000 = pygame.image.load("Bouton_1000.jpg")
 fenetre2.blit(Bouton_1000, (270, y - 88))
-rect1000 = Bouton_1000.get_rect()
+
 
 file = 'musique.mp3'
 pygame.mixer.init()
@@ -87,7 +85,7 @@ while continuer == 1:
                         "Voulez-vous continuer (press P), changer de jeu (press C) ou arrêter (press S).")
 
                 if changeGame.lower() == 's':  # Arrêt du jeu sur demande
-                    print("Merci d'avoir joué, à bientôt !")
+                    print("Merci d'avoir joué, vous finissez le jeu avec une balance de", balance, ". Wow, c'est impressionant, vous battez tous les records ! à bientôt !")
                     pygame.quit()
                     exit()
 
@@ -103,7 +101,7 @@ while continuer == 1:
                         "Voulez-vous continuer (press P), changer de jeu (press C) ou arrêter (press S).")
 
                 if changeGame.lower() == 's':
-                    print("Merci d'avoir joué, vous finissez le jeu avec une balance de", balance, "à bientôt !")
+                    print("Merci d'avoir joué, vous finissez le jeu avec une balance de", balance, ". Wow, c'est impressionant, vous battez tous les records ! à bientôt !")
                     pygame.quit()
                     exit()
 
@@ -114,12 +112,12 @@ while continuer == 1:
                 continuer = 0
                 while changeGame.lower() == 'p':
                     balance = playBlackjack(balance)
-                    print("Votre balance est : " + str(balance) + "\n")
+                    print("Votre balance est : " + balance + "\n")
                     changeGame = input(
                         "Voulez-vous continuer (press P), changer de jeu (press C) ou arrêter (press S).")
 
                 if changeGame.lower() == 's':
-                    print("Merci d'avoir joué, à bientôt !")
+                    print("Merci d'avoir joué, vous finissez le jeu avec une balance de", balance, ". Wow, c'est impressionant, vous battez tous les records ! à bientôt !")
                     pygame.quit()
                     exit()
 
@@ -135,7 +133,7 @@ while continuer == 1:
                         "Voulez-vous continuer (press P), changer de jeu (press C) ou arrêter (press S).")
 
                 if changeGame.lower() == 's':
-                    print("Merci d'avoir joué, à bientôt !")
+                    print("Merci d'avoir joué, vous finissez le jeu avec une balance de", balance, ". Wow, c'est impressionant, vous battez tous les records ! à bientôt !")
                     pygame.quit()
                     exit()
 
