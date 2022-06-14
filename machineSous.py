@@ -53,16 +53,16 @@ def playMachineSous(balance):
 
 
     while int(mise) > int(balance):
-        mise = input("Votre mise est supérieure à votre balance. Rentrez une nouvelle mise : ")
+        mise = input("Votre mise est supérieure à votre balance. Rentrez une nouvelle mise : ") 
 
-    balance = int(balance) - int(mise)
+    balance = int(balance) - int(mise)  # on actualise la balance
 
     print("Les symboles sont : " + str(symb1) + " / " + str(symb2) + " / " + str(symb3) )
 
-    if symb1 == symb2 == symb3:
+    if symb1 == symb2 == symb3:     # on vérifie si les 3 symboles sont similaires
         print("Bien joué, vous avez gagné !")
-        if symb1 == 1:
-            mise = int(mise) * 2
+        if symb1 == 1:  
+            mise = int(mise) * 2    # on adapte les multiplicateurs en fonction du symbole.
             balance = int(balance) + int(mise)
             return balance
         if symb1 == 2:

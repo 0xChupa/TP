@@ -3,11 +3,11 @@ import random
 import pygame
 from pygame.locals import *
 
-def check(list): 
+def check(list): #  fonction qui vérifie si tous les éléments sont pareils
     return all(i == list[0] for i in list) 
 
 def playBingo(balance):
-    choicesP = [i for i in range(1,90)]
+    choicesP = [i for i in range(1,90)] # liste de nombres de 1 à 90
     choicesB = [i for i in range(1,90)]
     randomNumList = [i for i in range(1,90)]
 
@@ -85,20 +85,20 @@ def playBingo(balance):
 
     while int(mise) > int(balance):
         mise = input("Votre mise est supérieure à votre balance. Rentrez une nouvelle mise : ")
-    balance = int(balance) - int(mise)
+    balance = int(balance) - int(mise)  #   on actualise la balance
 
     for i in range (5):
         print(str(playBoardP[i]) + "             "   + str(playBoardB[i]))
 
     while check(playBoardB) == False and check(playBoardP) == False:
-        randomNum = random.choice(randomNumList)
-        randomNumList.pop(randomNumList.index(randomNum))
+        randomNum = random.choice(randomNumList)    # On sélectionne un nombre aléatoire dans la liste
+        randomNumList.pop(randomNumList.index(randomNum))   # Puis on le retire de la liste
         print(randomNum)
 
-        for i in range(5):
+        for i in range(5):  # on check chaque élément du tableau
             for j in range(5):
-                if playBoardP[i][j] == randomNum:
-                    playBoardP[i][j] = 'X'
+                if playBoardP[i][j] == randomNum:   # Si la case correspond au nombre pioché précédemment
+                    playBoardP[i][j] = 'X'      # alors on le remplace par 'X'
                 if playBoardB[i][j] == randomNum:
                     playBoardB[i][j] = 'X'
                 else:
@@ -106,16 +106,16 @@ def playBingo(balance):
 
         for i in range (5):
             print(str(playBoardP[i]) + "             "   + str(playBoardB[i]))
-        if check(playBoardB) == True and check(playBoardP) == True:
+        if check(playBoardB) == True and check(playBoardP) == True:     # On vérifie si les 2 joueurs ont fini leur grille
             print("Vous avez rempli votre grille en même temps, égalite !")
             balance = int(balance) + int(mise)
             break
-        if check(playBoardP) == True:
+        if check(playBoardP) == True:       # On vérifie si le joueur a gagné
             print("Vous avez gagné, bien joué !")
-            mise = int(mise) * 2
+            mise = int(mise) * 2        # Si c'est le cas, sa mise fait *2
             balance = int(balance) + int(mise)
             break
-        if check(playBoardB) == True:
+        if check(playBoardB) == True:   #   Si c'est le bot qui gagne, alors la partie est finie.
             print("Votre adversaire a gagné, dommage !")
 
     return balance
