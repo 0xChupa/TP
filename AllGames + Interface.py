@@ -98,7 +98,7 @@ while continuer == 1:
                     balance = playRoulette(balance)
                     print("Votre balance est : " + str(balance) + "\n")
                     changeGame = input(
-                        "Voulez-vous continuer (press P), changer de jeu (press C) ou arrêter (press S).")
+                        "Voulez-vous continuer (press P), changer de jeu (press C) ou arrêter (press S)..")
 
                 if changeGame.lower() == 's':
                     print("Merci d'avoir joué, vous finissez le jeu avec une balance de", balance, ". Wow, c'est impressionant, vous battez tous les records ! à bientôt !")
