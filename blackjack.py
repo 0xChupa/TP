@@ -115,7 +115,7 @@ def playBlackjack(balance):
                     balance = int(balance) + int(mise)
                     return balance
             else:
-                print("Vous êtes à un total de : " + str(totalJ))
+                print("Vous êtes à un total de: " + str(totalJ))
 
                 continueToPlayJ = input("Continue ? (Y / N) : ")    # on demande au joueur si il veut rejouer. Si c'est le cas, alors on le renvoie au début de la boucle de jeu.
 
