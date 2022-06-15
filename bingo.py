@@ -50,7 +50,6 @@ def playBingo(balance):
 
     continuer = 1
     while continuer == 1:
-        # pygame.init()
         for event in pygame.event.get():  # On parcours la liste de tous les événements
 
             if event.type == QUIT:
