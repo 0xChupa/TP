@@ -20,13 +20,12 @@ def playMachineSous(balance):
     fond_mach = pygame.display.set_mode((x, y))
 
     fond = pygame.image.load("Machine_neon_finit.jpg").convert()  # Chargement du fond
-    fond_mach.blit(fond, (0, 0))  # Position du fond sur la fenêtre
+    fond_mach.blit(fond, (0, 0))  # Position du fond sur la fenêtre.
 
     pygame.display.flip()
 
     continuer = 1
     while continuer == 1:
-        #pygame.init()
         for event in pygame.event.get():  # On parcours la liste de tous les événements
 
             if event.type == QUIT:
